@@ -24,6 +24,20 @@ jobs:
         sudo apt-get update -qq
         sudo apt-get install -y -qq gradle
 
+    - name: Fix source files
+      run: |
+        # Fix MediaFlixApp.kt
+        sed -i 's/HHiltAndroidApp/@HiltAndroidApp/' app/src/main/java/com/mediaflix/app/MediaFlixApp.kt
+        
+        # Fix AniListClient.kt - inject constructor
+        sed -i 's/class AniListClient -Inject constructor/class AniListClient @Inject constructor/' app/src/main/java/com/mediaflix/app/data/api/AniListClient.kt
+        
+        # Fix gqhqAl -> graphqlQuery in AniListClient
+        sed -i 's/gqhqAl/graphqlQuery/g' app/src/main/java/com/mediaflix/app/data/api/AniListClient.kt
+        
+        # Fix PdfReaderScreen - remove barteksc import
+        sed -i '/com.github.barteksc/d' app/src/main/java/com/mediaflix/app/ui/screens/PdfReaderScreen.kt
+
     - name: Generate Gradle Wrapper
       run: gradle wrapper --gradle-version 8.5
 
@@ -35,4 +49,4 @@ jobs:
       with:
         name: MediaFlix-Debug
         path: app/build/outputs/apk/debug/app-debug.apk
-        retention-days: 90.
+        retention-days: 90
