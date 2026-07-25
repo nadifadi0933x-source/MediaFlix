@@ -100,9 +100,6 @@ dependencies {
     implementation("androidx.media3:media3-ui:1.2.0")
     implementation("androidx.media3:media3-exoplayer-hls:1.2.0")
 
-    // PDF Viewer
-    implementation("com.github.barteksc:android-pdf-viewer:3.2.0-beta.1")
-
     // Accompanist (system UI controller, placeholder)
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.34.0")
     implementation("com.google.accompanist:accompanist-placeholder-material:0.34.0")
